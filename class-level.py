@@ -56,3 +56,31 @@ for i in OO_metrics:
     plt.tight_layout()
     plt.savefig(f'classes/boxplots/boxplot_{i}.png', dpi=300, bbox_inches='tight')
     plt.close()
+    
+
+        
+# #Example for version extracted_classes_jsoup_1_14_3, metric SumEssential
+# metric = extracted_classes_jsoup_1_14_3.SumEssential
+
+# q1 = np.quantile(metric, 0.25)
+# # finding the 3rd quartile
+# q3 = np.quantile(metric, 0.75)
+# med = np.median(metric,0.50)
+# # finding the iqr region
+# iqr = q3-q1
+     
+# # finding upper and lower whiskers
+# upper_bound = q3+(1.5*iqr)
+# lower_bound = q1-(1.5*iqr)
+# print(iqr, upper_bound, lower_bound)
+    
+# outliers = metric[(metric <= lower_bound) | (metric >= upper_bound)]
+# print('The following are the outliers in the boxplot: \n{}'.format(outliers))
+# print('The number of outliers for the variable EssentialSum in jsoup_1_14_3 is : \n{}'.format(outliers.values.size))
+
+
+# plt.figure()
+# plt.title('Notched Box Plot for SumEssential in jsoup_1_14_3')
+# fig = plt.boxplot(metric, notch=True,labels=['1_14_3'])
+# # outliers_count = fig.fliers
+# plt.ylabel('Variation')
