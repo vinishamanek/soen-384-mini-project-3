@@ -27,9 +27,9 @@ extracted_classes_junit5_r5_13_1.isna().sum()
 extracted_classes_junit5_r5_14_0.isna().sum()
 
 # compute the number of classes for each release
-print('\nThe number of classes for each type for 12_2 release: \n{}'.format(extracted_classes_junit5_r5_12_2.Kind.value_counts())) 
-print('\nThe number of classes for each type for 13_1 release: \n{}'.format(extracted_classes_junit5_r5_13_1.Kind.value_counts()))
-print('\nThe number of classes for each type for 14_0 release: \n{}'.format(extracted_classes_junit5_r5_14_0.Kind.value_counts()))
+print('\nThe number of classes for each type for r5_12_2 release: \n{}'.format(extracted_classes_junit5_r5_12_2.Kind.value_counts())) 
+print('\nThe number of classes for each type for r5_13_1 release: \n{}'.format(extracted_classes_junit5_r5_13_1.Kind.value_counts()))
+print('\nThe number of classes for each type for r5_14_0 release: \n{}'.format(extracted_classes_junit5_r5_14_0.Kind.value_counts()))
 
 extracted_classes_junit5_r5_12_2.to_csv('classes/csv filtered/r5.12.2-filtered.csv', index=False)
 extracted_classes_junit5_r5_13_1.to_csv('classes/csv filtered/r5.13.1-filtered.csv', index=False)
