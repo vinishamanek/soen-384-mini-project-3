@@ -34,3 +34,21 @@ print('\nThe number of methods for each type for r5_14_0 release: \n{}'.format(e
 extracted_methods_junit5_r5_12_2.to_csv('methods/csv filtered/r5.12.2-filtered.csv', index=False)
 extracted_methods_junit5_r5_13_1.to_csv('methods/csv filtered/r5.13.1-filtered.csv', index=False)
 extracted_methods_junit5_r5_14_0.to_csv('methods/csv filtered/r5.14.0-filtered.csv', index=False)
+
+
+def top_5_by_sloc(dataframe, release_name):
+    top_5 = dataframe.nlargest(5, 'CountLineCode')[['Name', 'Kind', 'CountLineCode', 'SumCyclomatic', 'Essential']]
+    
+    print(f"\n\n5 methods with highest SLOC for {release_name}:")
+    print(f"{'Rank':<6} {'SLOC':<8} {'Sum CC':<15} {'EC':<15} {'Kind':<20} {'Method Name'}")
+    print(f"{'-'*100}")
+    
+    for idx, (i, row) in enumerate(top_5.iterrows(), 1):
+        print(f"{idx:<6} {row['CountLineCode']:<8.0f} {row['SumCyclomatic']:<15.0f} "
+              f"{row['Essential']:<15.1f} {row['Kind']:<20} {row['Name']}")
+    
+    return top_5
+
+top_5_r5_12_2 = top_5_by_sloc(extracted_methods_junit5_r5_12_2, "r5.12.2")
+top_5_r5_13_1 = top_5_by_sloc(extracted_methods_junit5_r5_13_1, "r5.13.1")
+top_5_r5_14_0 = top_5_by_sloc(extracted_methods_junit5_r5_14_0, "r5.14.0")
