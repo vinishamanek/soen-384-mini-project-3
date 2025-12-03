@@ -52,3 +52,23 @@ def top_5_by_sloc(dataframe, release_name):
 top_5_r5_12_2 = top_5_by_sloc(extracted_methods_junit5_r5_12_2, "r5.12.2")
 top_5_r5_13_1 = top_5_by_sloc(extracted_methods_junit5_r5_13_1, "r5.13.1")
 top_5_r5_14_0 = top_5_by_sloc(extracted_methods_junit5_r5_14_0, "r5.14.0")
+
+OO_metrics = ['CountLineCode', 'SumCyclomatic', 'Essential']
+x1 = top_5_r5_12_2
+x2 = top_5_r5_13_1
+x3 = top_5_r5_14_0
+
+os.makedirs('methods/boxplots', exist_ok=True)
+
+outliers_count = np.zeros(len(OO_metrics))
+for i in OO_metrics:
+    metric = [x1[i], x2[i], x3[i]]
+    plt.figure()
+    plt.title('Notched Box Plot for ' + i)
+    fig = plt.boxplot(metric, notch=True, tick_labels=['r5.12.2', 'r5.13.1', 'r5.14.0'])
+
+    plt.ylabel('Variation')
+
+    plt.tight_layout()
+    plt.savefig(f'methods/boxplots/boxplot_{i}.png', dpi=300, bbox_inches='tight')
+    plt.close()

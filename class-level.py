@@ -35,7 +35,6 @@ extracted_classes_junit5_r5_12_2.to_csv('classes/csv filtered/r5.12.2-filtered.c
 extracted_classes_junit5_r5_13_1.to_csv('classes/csv filtered/r5.13.1-filtered.csv', index=False)
 extracted_classes_junit5_r5_14_0.to_csv('classes/csv filtered/r5.14.0-filtered.csv', index=False)
 
-# Plotting boxplots
 OO_metrics = ['SumCyclomatic', 'AvgEssential', 'MaxInheritanceTree', 'PercentLackOfCohesion', 'CountClassDerived', 'CountClassCoupled', 'CountDeclMethod', 'CountLineCode']
 x1 = extracted_classes_junit5_r5_12_2
 x2 = extracted_classes_junit5_r5_13_1
