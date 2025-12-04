@@ -36,12 +36,12 @@ extracted_methods_junit5_r5_13_1.to_csv('methods/csv filtered/r5.13.1-filtered.c
 extracted_methods_junit5_r5_14_0.to_csv('methods/csv filtered/r5.14.0-filtered.csv', index=False)
 
 
-def top_5_by_sloc(dataframe, release_name):
-    top_5 = dataframe.nlargest(5, 'CountLineCode')[['Name', 'Kind', 'CountLineCode', 'SumCyclomatic', 'Essential']]
+def top_5_by_metric(dataframe, metric_column, metric_name, release_name):
+    top_5 = dataframe.nlargest(5, metric_column)[['Name', 'Kind', 'CountLineCode', 'SumCyclomatic', 'Essential']]
     
-    print(f"\n\n5 methods with highest SLOC for {release_name}:")
+    print(f"\n\nTop 5 methods with highest {metric_name} for {release_name}:")
     print(f"{'Rank':<6} {'SLOC':<8} {'Sum CC':<15} {'EC':<15} {'Kind':<20} {'Method Name'}")
-    print(f"{'-'*100}")
+    print(f"{'-'*150}")
     
     for idx, (i, row) in enumerate(top_5.iterrows(), 1):
         print(f"{idx:<6} {row['CountLineCode']:<8.0f} {row['SumCyclomatic']:<15.0f} "
@@ -49,14 +49,32 @@ def top_5_by_sloc(dataframe, release_name):
     
     return top_5
 
-top_5_r5_12_2 = top_5_by_sloc(extracted_methods_junit5_r5_12_2, "r5.12.2")
-top_5_r5_13_1 = top_5_by_sloc(extracted_methods_junit5_r5_13_1, "r5.13.1")
-top_5_r5_14_0 = top_5_by_sloc(extracted_methods_junit5_r5_14_0, "r5.14.0")
+print("="*150)
+print("TOP 5 BY SLOC (Source Lines of Code)")
+print("="*150)
+top_5_sloc_r5_12_2 = top_5_by_metric(extracted_methods_junit5_r5_12_2, 'CountLineCode', 'SLOC', 'r5.12.2')
+top_5_sloc_r5_13_1 = top_5_by_metric(extracted_methods_junit5_r5_13_1, 'CountLineCode', 'SLOC', 'r5.13.1')
+top_5_sloc_r5_14_0 = top_5_by_metric(extracted_methods_junit5_r5_14_0, 'CountLineCode', 'SLOC', 'r5.14.0')
+
+print("\n" + "="*150)
+print("TOP 5 BY EC (Essential Complexity)")
+print("="*150)
+top_5_ec_r5_12_2 = top_5_by_metric(extracted_methods_junit5_r5_12_2, 'Essential', 'EC', 'r5.12.2')
+top_5_ec_r5_13_1 = top_5_by_metric(extracted_methods_junit5_r5_13_1, 'Essential', 'EC', 'r5.13.1')
+top_5_ec_r5_14_0 = top_5_by_metric(extracted_methods_junit5_r5_14_0, 'Essential', 'EC', 'r5.14.0')
+
+print("\n" + "="*150)
+print("TOP 5 BY SUM CC (Sum Cyclomatic Complexity)")
+print("="*150)
+top_5_cc_r5_12_2 = top_5_by_metric(extracted_methods_junit5_r5_12_2, 'SumCyclomatic', 'Sum CC', 'r5.12.2')
+top_5_cc_r5_13_1 = top_5_by_metric(extracted_methods_junit5_r5_13_1, 'SumCyclomatic', 'Sum CC', 'r5.13.1')
+top_5_cc_r5_14_0 = top_5_by_metric(extracted_methods_junit5_r5_14_0, 'SumCyclomatic', 'Sum CC', 'r5.14.0')
+
 
 OO_metrics = ['CountLineCode', 'SumCyclomatic', 'Essential']
-x1 = top_5_r5_12_2
-x2 = top_5_r5_13_1
-x3 = top_5_r5_14_0
+x1 = extracted_methods_junit5_r5_12_2
+x2 = extracted_methods_junit5_r5_13_1
+x3 = extracted_methods_junit5_r5_14_0
 
 os.makedirs('methods/boxplots', exist_ok=True)
 
